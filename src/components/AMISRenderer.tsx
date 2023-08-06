@@ -4,7 +4,7 @@ import {getEnv} from 'mobx-state-tree';
 import {IMainStore} from '../store';
 import qs from 'qs';
 import {render as amisRender, utils, filter} from 'amis';
-import { useLocation, useMatch, useNavigate } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { useMemo } from 'react';
 
 let env: any;
@@ -23,7 +23,7 @@ export function schema2component(
   const SchemaRenderer: React.FC<SchemaRendererProps> = (props) => {
     console.log(props, 'prosp')
       const displayName = 'SchemaRenderer';
-      const location = useLocation();
+      const location = props.history.location;
   
       function thisGetEnv() {
         if (env) {
@@ -235,7 +235,7 @@ export function schema2component(
       
     }
 
-  const Compo = inject('store')(observer(SchemaRenderer))
+  const Compo = withRouter(inject('store')(observer(SchemaRenderer)))
 
   return Compo;
 }

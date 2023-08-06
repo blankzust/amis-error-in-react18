@@ -4,7 +4,7 @@ import { MainStore } from './store'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Provider } from 'mobx-react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
 import AMISRenderer from './components/AMISRenderer'
 
@@ -20,9 +20,9 @@ function App() {
   return (
     <Provider store={store}>
       <HashRouter>
-        <Routes>
-          <Route path='/test' element={<AMISRenderer schema={test}/>}></Route>
-        </Routes>
+        <Switch>
+          <Route path='/test' render={() => <AMISRenderer schema={test}/>}></Route>
+        </Switch>
       </HashRouter>
     </Provider>
   )
